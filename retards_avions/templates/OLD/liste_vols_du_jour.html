@@ -1,0 +1,91 @@
+ <label for="speed-menu">Heures des Vols :     
+            <select name="speed-menu" id="speed-menu">
+              {% for vol in l_vol %}
+                  <option value="{{ vol['value'] }}" dep_hour="{{ vol['dep_hour'] }}" arr_hour="{{ vol['arr_hour'] }}" airline_id="{{ vol['airline_id'] }}">{{ vol['label']}}</option>
+              {% endfor %}
+            </select>
+ </label>
+ 
+ <script>
+     //console.log("Nous sommes ici");
+     
+     $( function() {
+                //var circle = $( "#circle" );
+                 console.log("PASSAGE PAR ICI");
+                    
+                 $("#speed-menu").change(function() {
+                         console.log("--------> STOP ");
+                       if($(this).val()=="short")
+                           {
+                             console.log("ICI1");
+                             $(this).css("width","100px");  
+                           }
+                        else 
+                           {
+                            console.log("ERREUR1");
+                            }
+                         
+                       if($(this).val()=="long")
+                       {
+                               console.log("ICI1");
+                             $(this).css("width","500px");
+                           }
+                        else 
+                           {
+                            console.log("ERREUR1");
+                            }
+                        
+                         
+                    });
+
+                      
+                      
+                      
+              
+              
+              $( "#speed-menu" ).selectmenu({
+                      
+                      select: function( event, ui ) {
+                        
+                          //console.log("---- onSelect_res");
+                          
+                          //console.log("Nous avons selectionné la valeur ", event, " -- ", ui); 
+                          //TOTO_STT= ui;
+                          //console.log("-- BIS : ", ui.item.label);
+                          //console.log("-- TER : ", ui.item.element);
+                          //console.log("-- 4 : ", ui.item.optgroup);
+                          //TOTO_STT= ui.item;
+                          //TOTO_STT2= ui.item.element.attributes;
+                          //console.log("-- 5 : ", ui.item[0]);
+                          //console.log("-- 6 : ", ui.item.element[0].attributes);
+                          //var tmp1 = ui.item.element[0].attributes["dep_hour"].value;
+                          //console.log("-- 7 : ", ui.item.element[0].attributes["dep_hour"].value);
+                         
+                          
+                          $("#stt_00").load("resultat_prediction.html", 
+                           { 
+                           "choices[]": [ "Jon", "Susan" ],
+                           "ville_depart": $("#ville_depart").val(),
+                           "ville_arrivee": $("#ville_arrivee").val(), 
+                           "date_dep": $("#datepicker_depart").val(),
+                           "airline_id": ui.item.element[0].attributes["airline_id"].value,
+                           "dep_hour": ui.item.element[0].attributes["dep_hour"].value,
+                           "arr_hour": ui.item.element[0].attributes["arr_hour"].value
+                            }, 
+                           function() {
+                               //TOTO_STT3 = ui.item.element[0].attributes["dep_hour"].value;
+                                  //alert( "ICI : JE SUIS DANS LISTE_VOLS_DU_JOUR"+ TOTO_STT3 + "--" );
+                            })
+                          
+                          
+                          
+                      }
+                     });
+                 
+              } );
+     
+     
+</script>          
+
+
+ 

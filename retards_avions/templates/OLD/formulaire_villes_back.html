@@ -1,0 +1,68 @@
+<script>//var liste = \{\{ villes|tojson|safe \}\};
+    var liste = {{ villes|safe }};
+
+    $('#ville_depart').autocomplete({
+    minLength:0,
+    autoFocus:true,
+    source : liste,
+    select : function(event, ui){ // lors de la sélection d'une proposition
+        $('#ville_depart_desc').val( ui.item.desc ); // on ajoute la description de l'objet dans un bloc
+        //////////alert( 'Mon resultat : '+ui.item.value +' -- '+ui.item.label);
+        var MA_MIN_DATE = '1-1-2016';
+         var MA_MAX_DATE = '12-31-2016';
+    }
+    });
+</script>
+
+
+
+<script>$('#ville_arrivee').autocomplete({
+    source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+	$.ajax({
+            url : '{{ url_for('get_liste_ville_arrivee') }}', // on appelle le script JSON
+            dataType : 'json', // on spécifie bien que le type de données est en JSON
+            data : {
+                ville_depart : $('#ville_depart').val() // on donne la chaîne de caractère tapée dans le champ de recherche
+            },
+            success : function(donnee){
+                reponse($.map(donnee.villes, function(objet){
+                    //console.log( "COOL "+objet.value );	
+                     if (objet.value.toLowerCase().includes($('#ville_arrivee').val().toLowerCase()))
+                        {
+                         return { value : objet.value, label : objet.name, 
+                            desc : 'L\'interaction Draggable permet de déplacer un élément.', code: objet.desc }
+                        }
+                   
+                }));
+            }
+        });
+    },
+    minLength:0,
+    autoFocus:true,
+    select : function(event, ui){
+        //////////alert( 'Mon resultat : '+ui.item.code +' -- '+ui.item.label); // lance une alerte indiquant la valeur de la proposition
+        
+        resultat = $.ajax({
+            url : '{{ url_for('get_liste_ville_arrivee2') }}', // on appelle le script JSON
+            dataType : 'json', // on spécifie bien que le type de données est en JSON
+            data : {
+                ville_depart : $('#ville_depart').val(),
+                ville_arrivee : $('#ville_arrivee').val(), 
+                test : 'MACHIN'
+            },
+            success : function(json) {
+                   MA_MIN_DATE = json.date_min;
+                   MA_MAX_DATE = json.date_max;
+                   enableddates = json.dates_actives;
+            },
+            });
+        
+    }
+});
+</script>
+
+
+<script>
+//$('#ville_depart').val('Dallas, TX');
+//$('#ville_arrivee').val('Albuquerque, NM');
+</script>

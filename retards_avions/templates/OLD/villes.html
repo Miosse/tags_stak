@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="iso-8859-1" />
+        <title>Gestion des Villes de Départ et d'Arrivée</title>
+	
+        <!-- inclusion du style CSS de base -->
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
+    </head>
+
+    <body>
+
+        <!-- inclusion des libraries jQuery et jQuery UI (fichier principal et plugins) -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+	
+	<form>Ville de Départ  <input type="text" id="ville_depart"/></form>
+	<form>Ville d'arrivée  <input type="text" id="ville_arrivee"/></form>
+	
+
+
+<script>$('#ville_depart').autocomplete({
+    source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+	$.ajax({
+        	   url : 'http://127.0.0.1:5000/vol/aeroports/', // on appelle le script JSON
+            dataType : 'json', // on spécifie bien que le type de données est en JSON
+            data : {
+                
+            },
+            success : function(donnee){
+                reponse($.map(donnee.villes, function(objet){
+                    if (objet.name.toLowerCase().includes($('#ville_depart').val().toLowerCase()))
+                        {
+                         return { value : objet.name, label : objet.name, 
+                            desc : 'L\'interaction Draggable permet de déplacer un élément.', code: objet.code }
+                        }
+                   
+                }));
+            }
+        });
+    },
+    minLength:0,
+    autoFocus:true,
+    autoFocus:true,
+    select : function(event, ui){
+        alert( 'Mon resultat : '+ui.item.code +' -- '+ui.item.label); // lance une alerte indiquant la valeur de la proposition
+    }
+});
+</script>
+	<script>$('#ville_arrivee').autocomplete({
+    source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+	$.ajax({
+            url : 'http://127.0.0.1:5000/vol/aeroports/', // on appelle le script JSON
+            dataType : 'json', // on spécifie bien que le type de données est en JSON
+            data : {
+                ville_depart : $('#ville_depart').val() // on donne la chaîne de caractère tapée dans le champ de recherche
+            },
+            success : function(donnee){
+                
+                reponse($.map(donnee.villes, function(objet){
+                    console.log( "COOL "+objet.name );	
+                     if (objet.name.toLowerCase().includes($('#ville_arrivee').val().toLowerCase()))
+                        {
+                         return { value : objet.name, label : objet.name, 
+                            desc : 'L\'interaction Draggable permet de déplacer un élément.', code: objet.code }
+                        }
+                   
+                }));
+            }
+        });
+    },
+    minLength:0,
+    autoFocus:true,
+    autoFocus:true,
+    select : function(event, ui){
+        alert( 'Mon resultat : '+ui.item.code +' -- '+ui.item.label); // lance une alerte indiquant la valeur de la proposition
+    }
+});
+</script>
+
+
+    </body>
+
+</html> 

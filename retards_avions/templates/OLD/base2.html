@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Afficher la liste des films !">
+    <meta name="author" content="">
+    <title>Les films sélectionnés !</title>
+
+    <script src="{{ url_for('static', filename='js/jquery/jquery.min.js') }}"></script>
+    
+</head>
+
+<body id="page-top" class="index">
+<div id="skipnav">Voici la liste des films</div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+            
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer class="text-center">
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <hr class="star-light">
+                        <span class="italic">Copyright Sébastien Toquet</span>
+                        <p style="font-style:italic; font-size: 14px;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

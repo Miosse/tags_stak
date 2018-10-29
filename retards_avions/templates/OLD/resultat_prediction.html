@@ -1,0 +1,19 @@
+<h1> Voici l'affichage du résultat de la prédiction </h1>
+
+<h2>Informations préalables</h2>
+<ul>
+  <li>Ville de Départ : {{ vol['ville_depart'] }}</li>
+  <li>Ville d'arrivée : {{ vol['ville_arrivee'] }}</li>
+  <li>Jour de Départ : {{ vol['dep_date'] }}</li>
+  <li>Heure de Départ : {{ vol['dep_hour'] }}</li>
+  <li>Heure d'Arrivée : {{ vol['arr_hour'] }}</li>
+  <li>Compagnie : {{ vol['airline_id'] }}</li>
+  <li>Label : {{ vol['label'] }}</li>
+  <li>Id : {{ vol['value'] }}</li>
+</ul>
+
+<h2>Prédiction</h2>
+<ul>
+    <li>Retard rééllement constaté : {{ vol['retard'] }} minutes</li>
+    <li>Temps de prédiction : {{ vol['prediction'] }} minutes</li>
+</ul>

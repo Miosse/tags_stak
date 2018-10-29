@@ -1,0 +1,121 @@
+<script>  /** Days to be disabled as an array */
+    var enableddates = ["7-30-2018"];
+     
+     function EnableSpecificDates(date) {
+        var m = date.getMonth();
+        var d = date.getDate();
+        var y = date.getFullYear();
+ 
+        
+         // First convert the date in to the mm-dd-yyyy format 
+         // Take note that we will increment the month count by 1 
+         var currentdate = (m + 1) + '-' + d + '-' + y ;
+
+         for (var i = 0; i < enableddates.length; i++) {
+             //console.log( "LALALA "  +enableddates[i] );
+             // Now check if the current date is in disabled dates array. 
+             if ($.inArray(currentdate, enableddates) != -1 ) {
+                 //console.log( "--STOP : OK -- "  +enableddates[i] + ' pour ' + currentdate);
+                 return [true];
+                 }
+            else
+                //console.log( "--STOP : KO -- "  +enableddates[i] + ' pour ' + currentdate);
+                return [false];
+         }
+ 
+    };
+    
+    function onSelect_f(a, b) {
+        //console.log("a", a);
+        //console.log("b", b);
+        //console.log("c");
+    };
+    
+
+  
+  function customRange2(input) {
+      resultat = $.ajax({
+            url : '{{ url_for('get_liste_ville_arrivee2') }}', // on appelle le script JSON
+            dataType : 'json', // on spécifie bien que le type de données est en JSON
+            data : {
+                ville_depart : $('#ville_depart').val(),
+                ville_arrivee : $('#ville_arrivee').val(), 
+                test : 'TRUC2'
+            },
+            success : function(json) {
+                   MA_MIN_DATE = json.date_min;
+                   MA_MAX_DATE = json.date_max;
+                   enableddates = json.dates_actives;
+            },
+            });
+    
+    return { minDate: new Date($.datepicker.parseDate('mm-dd-yy', MA_MIN_DATE)) ,
+        maxDate: new Date($.datepicker.parseDate('mm-dd-yy', MA_MAX_DATE)) ,
+        defaultDate: new Date($.datepicker.parseDate('mm-dd-yy', MA_MIN_DATE))
+    };
+};
+
+function customRange(input) {
+  return { minDate: new Date($.datepicker.parseDate('mm-dd-yy', MA_MIN_DATE)) ,
+        maxDate: new Date($.datepicker.parseDate('mm-dd-yy', MA_MAX_DATE)) ,
+        defaultDate: new Date($.datepicker.parseDate('mm-dd-yy', MA_MIN_DATE))
+    };
+};
+ 
+ $(function() {
+ $(function() {
+    //console.log( "JE SUIS ICI function " );
+     resultat = $.ajax({
+            url : '{{ url_for('get_liste_ville_arrivee2') }}', // on appelle le script JSON
+            dataType : 'json', // on spécifie bien que le type de données est en JSON
+            data : {
+                ville_depart : $('#ville_depart').val(),
+                ville_arrivee : $('#ville_arrivee').val(), 
+                test : 'BIDULE'
+            },
+            success : function(json) {
+                   MA_MIN_DATE = json.date_min;
+                   MA_MAX_DATE = json.date_max;
+                   enableddates = json.dates_actives;
+            },
+            });
+ });
+ 
+ 
+ $.datepicker.regional['fr'] = {
+  closeText: 'Fermer',
+  prevText: 'Précédent',
+  nextText: 'Suivant',
+  currentText: 'Aujourd\'hui',
+  monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+  monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+  dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+  dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
+  dayNamesMin: ['D','L','M','M','J','V','S'],
+  weekHeader: 'Sem.',
+  dateFormat: 'dd/mm/yy',
+  firstDay: 1,
+  isRTL: false,
+  showMonthAfterYear: false,
+  yearSuffix: ''};
+
+$.datepicker.setDefaults($.datepicker.regional['fr']);
+
+ $( "#datepicker_depart" ).datepicker({
+     onSelect: onSelect_f,
+     beforeShow: customRange, 
+     beforeShowDay: EnableSpecificDates,
+     monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+     monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+     dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+     dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+     dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+     weekHeader: 'Sem.',
+     dateFormat: 'yy-mm-dd',
+     altField: "#actualDate", 
+ });
+ 
+ 
+ });
+ </script>
+ 

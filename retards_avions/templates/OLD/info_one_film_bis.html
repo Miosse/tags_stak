@@ -1,0 +1,27 @@
+<div class="film">
+  <div class="row">
+    <div class="col-sm-3">
+      <h2 id="film_name">Titre : {{ film_info['titre'] }} -- ID : <a href="{{ url_for('recommend',content_id= film_info['id']) }}">{{ film_info['id'] }}</a></h2>
+      
+    </div>
+    <div class="col-sm-12">
+      <h4 id="directeur">Réalisateur : {{ film_info['directeur'] }}</p>
+    </div>
+    <div class="col-sm-12">
+      <p id="acteur1">Acteur1 : {{ film_info['act1'] }}</p>
+    </div>
+    <div class="col-sm-12">
+      <p id="acteur2">Acteur2 : {{ film_info['act2'] }}</p>
+    </div>
+    <div class="col-sm-12">
+      <p id="acteur3">Acteur3 : {{ film_info['act3'] }}</p>
+    </div>
+    <div class="col-sm-12">
+      <a href="{{ url_for('renvoie_groupe',content_id= film_info['label']) }}">Groupe Label {{ film_info['label'] }}</a>
+    </div>
+    <div class="col-sm-12">
+      <a href="{{ film_info['movie_imdb_link'] }}">Score : {{ film_info['imdb_score'] }}</a>
+    </div>
+    
+  </div>
+</div>

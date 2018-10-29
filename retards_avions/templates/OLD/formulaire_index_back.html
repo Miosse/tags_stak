@@ -1,0 +1,63 @@
+{% extends 'formulaire_base.html' %}
+
+{% block content %}
+  <!-- Header -->
+  <header>
+      <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+          Mon site de recommandation
+          </div>
+      </div>
+      <div class="row">
+        <div class="intro-text">
+          <h1 class="name">Retard de VOl</h1>
+          <hr class="star-light">
+        </div>
+        
+        <div class="container" id="maincontent" tabindex="-1">
+            <form>Ville de Départ  <input type="text" id="ville_depart"/> -- <input type="text" id="ville_depart_desc"/></form>
+            <form>Ville d'arrivée  <input type="text" id="ville_arrivee"/></form>
+            <p>Date Départ: <input type="text" id="datepicker_depart"></p>
+            
+            <form method="post" action="resultat_last.html">
+                <p>
+                    <h2>
+                    <label>Retrouver votre vol ? </label> : 
+                    <form>Ville de Départ  <input type="text" id="ville_depart"/></form>
+                    <form>Ville d'arrivée  <input type="text" id="ville_arrivee"/></form>
+                    <form><p>Date Départ: <input type="text" id="datepicker_depart"></p></form>
+                    </h2>
+                </p>
+            </form>
+                        
+            {% include 'formulaire_villes.html' %}
+            {% include 'formulaire_dates.html' %}
+            
+
+        </div>
+        <hr class="star-light">
+        
+        {% if film_selectionne==True %}
+          
+            {% for film_info in resultat_films %}
+            <div class="container" id="maincontent" tabindex="-1">
+                {% include 'info_one_film_bis.html' %}
+             </div>
+            {% endfor %} 
+        {% else %}
+            
+        {% endif %}
+        
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+          <p style="margin-top: 20px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" 
+            data-auto-logout-link="true" data-use-continue-as="true" onlogin='checkLoginState()'></div>
+          </p>
+        </div>
+      </div>
+    
+  </header>
+
+  <div id="fb-root"></div>
+
+{% endblock %}
