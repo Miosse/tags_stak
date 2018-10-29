@@ -1,0 +1,46 @@
+  <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Classifier les Posts Stack OverFlow</title>
+      <script src="{{ url_for('static', filename='js/jquery/jquery.js') }}"></script>
+      <link href="{{ url_for('static', filename='css/custom_post_existant.css') }}" rel="stylesheet">
+      <!-- <script src="{{ url_for('static', filename='js/mes_fonctions_post_existant.js') }}"></script> !-->
+      <script src="{{ url_for('static', filename='js/mes_fonctions.js') }}"></script>  
+      <script> url_prediction = '{{ url_for('resultat_prediction') }}';</script>
+      <script> tags_values = '{{ tags_values | safe }}';</script>
+
+    </head>
+    <body>
+      <section>
+        <h1>Post existant</h1>
+        <form id='form1' onsubmit="return false;">
+        <div>
+          <label for="post_title">Titre de la Question</label>
+          <textarea name="post_title_existant" id="post_title_existant">{{titre | safe}}</textarea>
+        </div>
+        <div>
+            <label for="msg">Corps:</label>
+            <textarea id="post_message_existant" name="post_message_existant">{{ msg | safe}}</textarea>
+        </div>
+        <div>
+          <button id="btn2">Prédiction des Tags</button>
+        </div>
+      </form>
+                <aside class='tags_StackOverFlow'>
+                    <h1 class="test">Tags StackOverflow</h1>
+                    <div id="tags_stacksOverflow"/>
+                </aside>
+                <aside class='tags_StackOverFlow'>
+                    <h1 class="test">Tags Prédits</h1>
+                    <div id="tags_Predits2"/>
+                </aside>
+
+      </section>
+
+    </body>
+  </html>
+  
+  
+  
+ 

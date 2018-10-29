@@ -1,0 +1,19 @@
+
+<link href="{{ url_for('static', filename='css/custom2.css') }}" rel="stylesheet">
+
+<body>
+    <div class="conteneur">
+        <h1> Vous pouvez ici tester la modélisation de classification automatique des tags StackOverflow</h1>
+  
+    
+      <nav>
+{% include 'post_existant.html' %}
+        </nav>
+        
+        <br>
+        <br>
+        <nav>
+{% include 'redaction_post.html' %}
+        </nav>
+      </div>
+</body>

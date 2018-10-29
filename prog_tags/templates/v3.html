@@ -1,0 +1,27 @@
+ <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Classifier les Posts Stack OverFlow</title>
+      <link href="{{ url_for('static', filename='css/custom2.css') }}" rel="stylesheet">
+      <script src="{{ url_for('static', filename='js/jquery/jquery.js') }}"></script>
+      
+    </head>
+    <body>
+      <form method="post" action="{{ url_for('resultat_prediction') }}">
+        <div>
+          <label for="say">Titre de la Question</label>
+          <input name="say" id="say" value="Ici mon titre qui parle de python java ou c++ mais encore machine learning">
+        </div>
+        <div>
+            <label for="msg">Message :</label>
+            <textarea id="msg" name="user_message">python et java sont sur un bateau</textarea>
+        </div>    
+        <div>
+          <button>Mettre à jour les tags</button>
+        </div>
+      </form>
+      
+
+    </body>
+  </html>

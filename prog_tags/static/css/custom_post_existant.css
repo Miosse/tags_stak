@@ -1,0 +1,129 @@
+
+
+.test {
+  /*background-color: #F781BE;*/
+  font-size: 2em;
+  color: white;
+}
+
+.tags {
+  color: blue;
+}
+
+.tags_vocabulaire {
+  font-size: 2em;
+  color: white;
+}
+
+.tags_non_utilise {
+  font-size: 2em;
+  color: red;
+}
+
+.tags_StackOverFlow {
+  font-size: 1em;
+  color: white;
+}
+
+ul {
+  font-size: 2em; 
+  color: white;
+
+}
+em {
+  /*text-emphasis: pink;
+  text-emphasis: filled double-circle blue;
+  -webkit-text-emphasis: filled double-circle blue;*/
+  color: red;
+}
+
+section {
+  display: flex;
+  margin-bottom: 20px;
+
+}
+
+form {
+  /* Uniquement centrer le formulaire sur la page */
+  margin: 0 auto;
+  width: 680px;
+  /* Encadré pour voir les limites du formulaire */
+  padding: 1em;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+
+  /*flex: 3;*/
+  
+}
+
+form div + div {
+  margin-top: 1em;
+}
+
+
+form, aside
+{
+    text-align: justify;
+}
+
+aside
+{
+    /*flex: 1.2;*/
+    position: relative;
+    background-color: #706b64;
+    box-shadow: 0px 2px 5px #1c1a19;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 0.9em;
+}
+
+label {
+  /* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+}
+
+input, textarea {
+  /* Pour s'assurer que tous les champs texte ont la même police.
+     Par défaut, les textarea ont une police monospace */
+  font: 1.3em sans-serif;
+  
+  
+  /* Pour que tous les champs texte aient la même dimension */
+  width: 550px;
+  box-sizing: border-box;
+
+  /* Pour harmoniser le look & feel des bordures des champs texte */
+  border: 1px solid #999;
+}
+
+input:focus, textarea:focus {
+  /* Pour souligner légèrement les éléments actifs */
+  border-color: #000;
+}
+
+textarea {
+  /* Pour aligner les champs texte multi‑ligne avec leur étiquette */
+  vertical-align: top;
+
+  /* Pour donner assez de place pour écrire du texte */
+  height: 7em;
+  
+  font-family : inherit;
+  font-size   : 130%;               /* STT : c'est ici que je gere la taille */
+
+}
+
+.button {
+  /* Pour placer le bouton à la même position que les champs texte */
+  padding-left: 90px; /* même taille que les étiquettes */
+}
+
+button {
+  /* Cette marge supplémentaire représente grosso modo le même espace que celui
+     entre les étiquettes et les champs texte */
+  margin-left: .5em;
+  font: 0.9em sans-serif;
+}
