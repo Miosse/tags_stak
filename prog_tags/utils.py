@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import pandas as pd
+#import pandas as pd
 
-from .models import Prediction
+from .models import Prediction, Post
 
 # from .prediction_classe import Prediction
 # Pred = Prediction(MODELS_DIRECTORY_PATH)
 
 # Chargement des données
-file1 = 'prog_tags/data/QueryResults3.csv'
-Post = pd.read_csv(file1, index_col=['Id'])
+# file1 = 'prog_tags/data/QueryResults3.csv'
+# Post = pd.read_csv(file1, index_col=['Id'])
 
 # Fonction qui renvoie la prédiction pour un titre et un corps de texte
 
