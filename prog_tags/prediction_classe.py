@@ -7,14 +7,10 @@ Created on Fri Oct 26 09:58:11 2018
 """
 
 import pandas as pd
-from os import path
 from datetime import datetime
 
 import numpy as np
-import re
-
 import os
-import sys
 import json
 
 from sklearn.externals import joblib
@@ -71,6 +67,8 @@ class Prediction():
     _file_vocabulary_loaded = False
     _file_models_loaded = False
 
+    _models_directory = None
+
     # Vocabulaire et mots utiles
     _voc_body = None
     _voc_title = None
@@ -90,13 +88,13 @@ class Prediction():
     _logs_param = 'Prediction : '
 
     @classmethod
-    def __init__(self, nom_fichier=None):
+    def __init__(self, model_directory=None):
         self._logs = Logs()
         self._logs('__init__ : DEBUT', param=self._logs_param)
 
-        if nom_fichier is not None:
-            self._nom_fichier = nom_fichier
-        
+        if model_directory is not None:
+            self._models_directory = model_directory
+
         import os
         print("ATTENTION nous sommes ici ", os.getcwd())
         # Chargement des vocabulaires
@@ -145,18 +143,22 @@ class Prediction():
     def load_vocabulary(self):
         try:
             self._voc_body = self.load_dict(
-                    self, m_path='prog_tags/data/MODEL/vocabulary_body.voc')
+                    self,
+                    m_path=self._models_directory + '/vocabulary_body.voc')
             self._voc_title = self.load_dict(
-                    self, m_path='prog_tags/data/MODEL/vocabulary_title.voc')
+                    self,
+                    m_path=self._models_directory + '/vocabulary_title.voc')
             self._voc_tags = self.load_dict(
-                    self, m_path='prog_tags/data/MODEL/vocabulary_tags.voc')
+                    self,
+                    m_path=self._models_directory + '/vocabulary_tags.voc')
         except Exception as e:
             msg = '-- load_vocabulary : ERREUR {}'.format(e)
             print(msg)
             self._logs(msg, param=self._logs_param)
 
         self._stopwords = self.load_stop_word(
-                self, m_path='prog_tags/data/MODEL/stopword.lst')
+                self,
+                m_path=self._models_directory + '/stopword.lst')
 
     @classmethod
     def load_models(self, nb_features):
@@ -164,7 +166,7 @@ class Prediction():
 
         # Les fichiers individuels
         # ###pattern_files = 'prog_tags/data/MODEL/PROD/{FILE}'
-        pattern_files = 'prog_tags/data/MODEL/{FILE}'
+        pattern_files = self._models_directory + '/{FILE}'
 
         try:
             self._model_body_vectCount = self.load_one_model(
@@ -409,25 +411,3 @@ class Prediction():
                     else 0, pred.columns.tolist()))
 
         return pred
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
