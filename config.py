@@ -6,6 +6,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 MODELS_DIRECTORY_PATH = basedir + '/prog_tags/data/MODEL/'
 
+DATA_DIRECTORY_PATH = basedir + '/prog_tags/data/'
+
 # SQLALCHEMY_TRACK_MODIFICATIONS = True
 # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 
